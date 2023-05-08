@@ -19,3 +19,20 @@ background-repeat: no-repeat;
 ul {
   list-style: none;
 }
+
+
+.error {
+  border: red 1px solid;
+}
+
+.error-message {
+  color: red;
+}
+
+.active-filter {
+  background: aquamarine;
+}
+
+.is-done {
+  opacity: 0.5;
+}
