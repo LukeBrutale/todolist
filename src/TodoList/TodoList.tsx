@@ -20,6 +20,7 @@ type PropsType = {
     isDone: boolean,
     todolistId: string,
   ) => void;
+  removeTodolist: (todolistId: string) => void;
 };
 
 export function TodoList(props: PropsType) {
@@ -41,7 +42,7 @@ export function TodoList(props: PropsType) {
     if (newTaskTitle.trim() === '') {
       return setError('Task is required');
     }
-    props.addTask(newTaskTitle.trim());
+    props.addTask(newTaskTitle.trim(), props.id);
     setNewTaskTitle('');
   };
 
@@ -49,10 +50,13 @@ export function TodoList(props: PropsType) {
   const onActiveClickHandler = () => props.changeFilter('active', props.id);
   const onCompletedClickHandler = () =>
     props.changeFilter('completed', props.id);
+  const removeTodolist = () => props.removeTodolist(props.id);
 
   return (
     <div>
-      <h3>{props.title}</h3>
+      <h3>
+        {props.title} <button onClick={removeTodolist}>x</button>
+      </h3>
       <div>
         <input
           value={newTaskTitle}
@@ -65,9 +69,9 @@ export function TodoList(props: PropsType) {
       </div>
       <ul>
         {props.tasks.map(task => {
-          const onRemoveHandler = () => props.removeTask(task.id);
+          const onRemoveHandler = () => props.removeTask(task.id, props.id);
           const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
-            props.changeTaskStatus(task.id, e.currentTarget.checked);
+            props.changeTaskStatus(task.id, e.currentTarget.checked, props.id);
           };
 
           return (
