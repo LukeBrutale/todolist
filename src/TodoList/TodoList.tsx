@@ -6,6 +6,8 @@ import { IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import { Button, Checkbox } from '@mui/material';
 
+import s from './TodoList.module.css';
+
 export type TasksType = {
   id: string;
   title: string;
@@ -49,7 +51,7 @@ export function TodoList(props: PropsType) {
         </IconButton>
       </h3>
       <AddItemForm addItem={addTask} />
-      <ul>
+      <ul className={s.list}>
         {props.tasks.map(task => {
           const onRemoveHandler = () => props.removeTask(task.id, props.id);
           const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {

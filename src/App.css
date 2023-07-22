@@ -1,37 +1,4 @@
-body {
+.header {
+  background-color: #20484b;
 
-background: #bdc3c7;
-background: -webkit-linear-gradient(to top, #2c3e50, #bdc3c7);
-background: linear-gradient(to top, #2c3e50, #bdc3c7);
-background-repeat: no-repeat;
 }
-
-/* .App {
-  padding: 30px;
-  display: flex;
-}
-
-.App > div {
-  margin-right: 50px;
-}
-
-ul {
-  list-style: none;
-}
-
-
-.error {
-  border: red 1px solid;
-}
-
-.error-message {
-  color: red;
-}
-
-.active-filter {
-  background: rgb(2, 64, 80);
-}
-
-.is-done {
-  opacity: 0.5;
-} */

@@ -8,8 +8,9 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-// import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 import './App.css';
 
@@ -113,8 +114,8 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <AppBar position="static">
+    <div>
+      <AppBar position="sticky" className="header">
         <Toolbar>
           <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
@@ -125,35 +126,41 @@ function App() {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-      <Container maxWidth="sm">
-        {/* <Box sx={{ height: '100vh' }} /> */}
-
-        <AddItemForm addItem={addTodolist} />
-        {todolists.map(todolist => {
-          let tasksForTodoList = tasksObj[todolist.id];
-          if (todolist.filter === 'completed') {
-            tasksForTodoList = tasksForTodoList.filter(task => task.isDone === true);
-          }
-          if (todolist.filter === 'active') {
-            tasksForTodoList = tasksForTodoList.filter(task => task.isDone === false);
-          }
-          return (
-            <TodoList
-              key={todolist.id}
-              id={todolist.id}
-              title={todolist.title}
-              tasks={tasksForTodoList}
-              removeTask={removeTask}
-              changeFilter={changeFilter}
-              addTask={addTask}
-              changeTaskStatus={changeStatus}
-              changeTaskTitle={changeTaskTitle}
-              filter={todolist.filter}
-              removeTodolist={removeTodolist}
-              changeTodolistTitle={changeTodolistTitle}
-            />
-          );
-        })}
+      <Container maxWidth="lg">
+        <Grid container style={{ padding: '10px 5px 20px 5px' }}>
+          <AddItemForm addItem={addTodolist} />
+        </Grid>
+        <Grid container spacing={5}>
+          {todolists.map(todolist => {
+            let tasksForTodoList = tasksObj[todolist.id];
+            if (todolist.filter === 'completed') {
+              tasksForTodoList = tasksForTodoList.filter(task => task.isDone === true);
+            }
+            if (todolist.filter === 'active') {
+              tasksForTodoList = tasksForTodoList.filter(task => task.isDone === false);
+            }
+            return (
+              <Grid item>
+                <Paper style={{ backgroundColor: '#cdd1d1', padding: '10px' }}>
+                  <TodoList
+                    key={todolist.id}
+                    id={todolist.id}
+                    title={todolist.title}
+                    tasks={tasksForTodoList}
+                    removeTask={removeTask}
+                    changeFilter={changeFilter}
+                    addTask={addTask}
+                    changeTaskStatus={changeStatus}
+                    changeTaskTitle={changeTaskTitle}
+                    filter={todolist.filter}
+                    removeTodolist={removeTodolist}
+                    changeTodolistTitle={changeTodolistTitle}
+                  />
+                </Paper>
+              </Grid>
+            );
+          })}
+        </Grid>
       </Container>
     </div>
   );
