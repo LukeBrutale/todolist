@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { TodoList, TasksType } from './TodoList/TodoList';
 import { AddItemForm } from './AddItemForm/AddItemForm';
 import { v1 } from 'uuid';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+// import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 import './App.css';
 
@@ -106,32 +114,47 @@ function App() {
 
   return (
     <div className="App">
-      <AddItemForm addItem={addTodolist} />
-      {todolists.map(todolist => {
-        let tasksForTodoList = tasksObj[todolist.id];
-        if (todolist.filter === 'completed') {
-          tasksForTodoList = tasksForTodoList.filter(task => task.isDone === true);
-        }
-        if (todolist.filter === 'active') {
-          tasksForTodoList = tasksForTodoList.filter(task => task.isDone === false);
-        }
-        return (
-          <TodoList
-            key={todolist.id}
-            id={todolist.id}
-            title={todolist.title}
-            tasks={tasksForTodoList}
-            removeTask={removeTask}
-            changeFilter={changeFilter}
-            addTask={addTask}
-            changeTaskStatus={changeStatus}
-            changeTaskTitle={changeTaskTitle}
-            filter={todolist.filter}
-            removeTodolist={removeTodolist}
-            changeTodolistTitle={changeTodolistTitle}
-          />
-        );
-      })}
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Menu
+          </Typography>
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
+      <Container maxWidth="sm">
+        {/* <Box sx={{ height: '100vh' }} /> */}
+
+        <AddItemForm addItem={addTodolist} />
+        {todolists.map(todolist => {
+          let tasksForTodoList = tasksObj[todolist.id];
+          if (todolist.filter === 'completed') {
+            tasksForTodoList = tasksForTodoList.filter(task => task.isDone === true);
+          }
+          if (todolist.filter === 'active') {
+            tasksForTodoList = tasksForTodoList.filter(task => task.isDone === false);
+          }
+          return (
+            <TodoList
+              key={todolist.id}
+              id={todolist.id}
+              title={todolist.title}
+              tasks={tasksForTodoList}
+              removeTask={removeTask}
+              changeFilter={changeFilter}
+              addTask={addTask}
+              changeTaskStatus={changeStatus}
+              changeTaskTitle={changeTaskTitle}
+              filter={todolist.filter}
+              removeTodolist={removeTodolist}
+              changeTodolistTitle={changeTodolistTitle}
+            />
+          );
+        })}
+      </Container>
     </div>
   );
 }
