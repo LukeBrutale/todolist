@@ -30,7 +30,7 @@ ul {
 }
 
 .active-filter {
-  background: aquamarine;
+  background: rgb(2, 64, 80);
 }
 
 .is-done {

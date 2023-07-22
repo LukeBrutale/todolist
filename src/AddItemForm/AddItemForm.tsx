@@ -36,7 +36,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
         onKeyUp={onKeyUpHandler}
         className={error ? 'error' : ''}
       />
-      <Button onClick={addTask} variant={'contained'} color={'primary'}>
+      <Button onClick={addTask} variant="contained">
         +
       </Button>
       {error && <div className="error-message">{error}</div>}
