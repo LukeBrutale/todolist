@@ -44,7 +44,7 @@ export function TodoList(props: PropsType) {
   return (
     <div>
       <h3>
-        {' '}
+        {''}
         <EditableSpan title={props.title} onChange={changeTodolistTitle} />
         <IconButton aria-label="delete" onClick={removeTodolist}>
           <Delete />
